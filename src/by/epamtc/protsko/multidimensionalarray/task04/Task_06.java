@@ -1,4 +1,4 @@
-package by.epamtc.protsko.array.task04;
+package by.epamtc.protsko.multidimensionalarray.task04;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,8 @@ public class Task_06 {
     private static List<Integer> diagonalElements = new ArrayList<>();
 
     //ПОСТРОЕНИЕ НЕЧЁТНОГО МАГИЧЕСКОГО КВАДРАТА
-    private static int[][] getOddMagicSquare(int squareBase) {
+    private static int[][] oddMagicSquare(int squareBase) {
+
         int[][] oddMagicSquare = new int[squareBase][squareBase];
         int currentNumber = 1;
         int indexRow = 0;
@@ -49,16 +50,16 @@ public class Task_06 {
     Инициализация матрицы порядка squareBase числами, в порядке
     естестрвенного возрастания
     */
-    private static int[][] getInitialFillingOfSquare(int squareBase) {
+    private static int[][] initialFillingOfSquare(int squareBase) {
         int currentNumber = 0;
-        int[][] initialFillingOfSquare = new int[squareBase][squareBase];
+        int[][] initialSquare = new int[squareBase][squareBase];
 
-        for (int i = 0; i < initialFillingOfSquare.length; i++) {
-            for (int j = 0; j < initialFillingOfSquare[i].length; j++) {
-                initialFillingOfSquare[i][j] = ++currentNumber;
+        for (int i = 0; i < initialSquare.length; i++) {
+            for (int j = 0; j < initialSquare[i].length; j++) {
+                initialSquare[i][j] = ++currentNumber;
             }
         }
-        return initialFillingOfSquare;
+        return initialSquare;
     }
 
     /*
@@ -66,18 +67,18 @@ public class Task_06 {
     а также во всех вписанных матрицах порядка 4х4 (координаты диагональных
     элементов по краям матриц)
     */
-    private static int[] getCoordinatesOfEdgesOfSquare(int squareBase) {
-        int[] coordinatesOfEdgesOfSquare = new int[squareBase / 2];
-        coordinatesOfEdgesOfSquare[0] = 1;
+    private static int[] coordinatesOfEdgesOfSquare(int squareBase) {
+        int[] coordinatesOfEdges = new int[squareBase / 2];
+        coordinatesOfEdges[0] = 1;
 
-        for (int i = 1; i < coordinatesOfEdgesOfSquare.length; i++) {
+        for (int i = 1; i < coordinatesOfEdges.length; i++) {
             if (i % 2 == 0) {
-                coordinatesOfEdgesOfSquare[i] = coordinatesOfEdgesOfSquare[i - 1] + 1;
+                coordinatesOfEdges[i] = coordinatesOfEdges[i - 1] + 1;
             } else {
-                coordinatesOfEdgesOfSquare[i] = coordinatesOfEdgesOfSquare[i - 1] + 3;
+                coordinatesOfEdges[i] = coordinatesOfEdges[i - 1] + 3;
             }
         }
-        return coordinatesOfEdgesOfSquare;
+        return coordinatesOfEdges;
     }
 
     /*
@@ -85,29 +86,29 @@ public class Task_06 {
     а также во всех вписанных матрицах порядка 4х4 (координаты диагональных
     элементов в середине матриц)
     */
-    private static int[] getCoordinatesOfMiddleOfSquare(int squareBase) {
-        int[] coordinatesOfMiddleOfSquare = new int[squareBase / 2];
-        coordinatesOfMiddleOfSquare[0] = 2;
+    private static int[] coordinatesOfMiddleOfSquare(int squareBase) {
+        int[] coordinatesOfMiddle = new int[squareBase / 2];
+        coordinatesOfMiddle[0] = 2;
 
-        for (int i = 1; i < coordinatesOfMiddleOfSquare.length; i++) {
+        for (int i = 1; i < coordinatesOfMiddle.length; i++) {
             if (i % 2 == 0) {
-                coordinatesOfMiddleOfSquare[i] = coordinatesOfMiddleOfSquare[i - 1] + 3;
+                coordinatesOfMiddle[i] = coordinatesOfMiddle[i - 1] + 3;
             } else {
-                coordinatesOfMiddleOfSquare[i] = coordinatesOfMiddleOfSquare[i - 1] + 1;
+                coordinatesOfMiddle[i] = coordinatesOfMiddle[i - 1] + 1;
             }
         }
-        return coordinatesOfMiddleOfSquare;
+        return coordinatesOfMiddle;
     }
 
     /*
     Удаление из исходной матрицы, инициализированной значениями в порядке естественного
     возрастания, значений, расположенных по диагоналям (в том числе и по диагоналям квадратов 4х4)
      */
-    private static int[][] getInitialSquareWithoutDiagonalElements(int squareBase) {
-        int[][] initialSquareWithoutDiagonalElements = getInitialFillingOfSquare(squareBase);
+    private static int[][] initialSquareWithoutDiagonalElements(int squareBase) {
+        int[][] initialSquareWithoutDiagonalElements = initialFillingOfSquare(squareBase);
         int stepCounter = 1;
-        int[] coordinatesOfEdgesOfSquare = getCoordinatesOfEdgesOfSquare(squareBase);
-        int[] coordinatesOfMiddleOfSquare = getCoordinatesOfMiddleOfSquare(squareBase);
+        int[] coordinatesOfEdgesOfSquare = coordinatesOfEdgesOfSquare(squareBase);
+        int[] coordinatesOfMiddleOfSquare = coordinatesOfMiddleOfSquare(squareBase);
 
         for (int i = 0; i < initialSquareWithoutDiagonalElements.length; i++) {
             if ((stepCounter == 1) || (stepCounter == 4)) {
@@ -130,8 +131,8 @@ public class Task_06 {
     /*
     Построение результирующего магического квадрата чётно-чётного подрядка
      */
-    private static int[][] getEvenEvenMagicSquare(int squareBase) {
-        int[][] evenEvenMagicSquare = getInitialSquareWithoutDiagonalElements(squareBase);
+    private static int[][] evenEvenMagicSquare(int squareBase) {
+        int[][] evenEvenMagicSquare = initialSquareWithoutDiagonalElements(squareBase);
         int diagonalElementsCounter = 0;
 
         for (int row = evenEvenMagicSquare.length - 1; row >= 0; row--) {
@@ -150,10 +151,10 @@ public class Task_06 {
     /*
     Построение промежуточного магического квадрата порядка squareBase
     */
-    private static int[][] getFirstIntermediateMagicSquare(int squareBase) {
+    private static int[][] firstIntermediateMagicSquare(int squareBase) {
         int[][] intermediateMagicSquare = new int[squareBase][squareBase];
         int midSquare = squareBase / 2;
-        int[][] firstMagicSquare = getOddMagicSquare(midSquare);
+        int[][] firstMagicSquare = oddMagicSquare(midSquare);
 
         for (int row = 0; row < intermediateMagicSquare.length; row++) {
             for (int column = 0; column < intermediateMagicSquare[row].length; column++) {
@@ -182,8 +183,8 @@ public class Task_06 {
     Перестановка местами определенных чисел первого и второго столбца
     промежуточнго магического квадрата
      */
-    private static int[][] getIntermediateMagicSquare(int squareBase) {
-        int[][] intermediateMagicSquare = getFirstIntermediateMagicSquare(squareBase);
+    private static int[][] intermediateMagicSquare(int squareBase) {
+        int[][] intermediateMagicSquare = firstIntermediateMagicSquare(squareBase);
         int stepCounter = 0;
         int tempElement;
 
@@ -206,9 +207,9 @@ public class Task_06 {
     Перестановка местами определенных столбцов промежуточного магического квадрата
     и построение результирующего магического квадрата чётно-нечётного порядка
      */
-    private static int[][] getEvenOddMagicSquare(int squareBase) {
-        int[][] evenOddMagicSquare = getIntermediateMagicSquare(squareBase);
-        int swapColumnCount = squareBase / 2 - 3;
+    private static int[][] evenOddMagicSquare(int squareBase) {
+        int[][] evenOddMagicSquare = intermediateMagicSquare(squareBase);
+        int swapColumnCount = (squareBase / 2) - 3;
         int startSwapColumnIndex = (squareBase - swapColumnCount) / 2;
         int endSwapColumnIndex = (squareBase + swapColumnCount) / 2;
         int tempElement;
@@ -222,18 +223,17 @@ public class Task_06 {
                 }
             }
             return evenOddMagicSquare;
-        } else {
-            return evenOddMagicSquare;
         }
+        return evenOddMagicSquare;
     }
 
-    public static int[][] getMagicSquare(int squareBase) {
+    public static int[][] magicSquare(int squareBase) {
         if (squareBase % 2 != 0) {
-            return getOddMagicSquare(squareBase);
+            return oddMagicSquare(squareBase);
         } else if (squareBase % 4 == 0) {
-            return getEvenEvenMagicSquare(squareBase);
+            return evenEvenMagicSquare(squareBase);
         } else {
-            return getEvenOddMagicSquare(squareBase);
+            return evenOddMagicSquare(squareBase);
         }
     }
 
@@ -250,8 +250,8 @@ public class Task_06 {
 
     //----- check result -----
     public static void main(String[] args) {
-        printResultMatrix(getMagicSquare(5));
-        printResultMatrix(getMagicSquare(10));
-        printResultMatrix(getMagicSquare(12));
+        printResultMatrix(magicSquare(5));
+        printResultMatrix(magicSquare(8));
+        printResultMatrix(magicSquare(10));
     }
 }

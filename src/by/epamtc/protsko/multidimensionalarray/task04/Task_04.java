@@ -1,16 +1,16 @@
-package by.epamtc.protsko.array.task04;
+package by.epamtc.protsko.multidimensionalarray.task04;
 
 public class Task_04 {
 
-    public static double[][] getResultMatrix(double[] array) {
-        double[][] resultMatrix = new double[array.length][array.length];
+    public static double[][] resultMatrix(double[] array) {
+        double[][] matrix = new double[array.length][array.length];
 
-        for (int i = 0; i < resultMatrix.length; i++) {
-            for (int j = 0; j < resultMatrix[i].length; j++) {
-                resultMatrix[i][j] = Math.pow(array[j], (i + 1));
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                matrix[i][j] = Math.pow(array[j], (i + 1));
             }
         }
-        return resultMatrix;
+        return matrix;
     }
 
     public static void printResultMatrix(double[][] array) {
@@ -28,6 +28,6 @@ public class Task_04 {
     public static void main(String[] args) {
         double[] array = {1, 2, 3, 4};
 
-        printResultMatrix(getResultMatrix(array));
+        printResultMatrix(resultMatrix(array));
     }
 }

@@ -1,8 +1,8 @@
-package by.epamtc.protsko.array.task04;
+package by.epamtc.protsko.multidimensionalarray.task04;
 
 public class Task_05 {
 
-    static double[][] matrixMultiplication(double[][] leftMatrix, double[][] rightMatrix) {
+    public static double[][] matrixMultiplication(double[][] leftMatrix, double[][] rightMatrix) {
         double[][] resultMatrix = {{}, {}};
 
         if (leftMatrix[0].length == rightMatrix.length) {
@@ -15,11 +15,11 @@ public class Task_05 {
                 }
             }
             return resultMatrix;
-        } else {
-            System.out.println("The operation is not possible because the number of columns of the left matrix" +
-                    "is not equal to the number of rows of the right matrix");
-            return resultMatrix;
         }
+
+        System.out.println("The operation is not possible because the number of columns of the left matrix" +
+                "is not equal to the number of rows of the right matrix");
+        return resultMatrix;
     }
 
     public static void printResultMatrix(double[][] array) {
